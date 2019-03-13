@@ -39,6 +39,10 @@ bot.on("message", function(message) {
    if (Roles.match(message)) {
       return Roles.action(message);
    }
+
+   if (Event.match(message)) {
+       return Event.action(message);
+   }
 });
 
 bot.on("messageReactionAdd", (reaction, user) => {
@@ -47,4 +51,5 @@ bot.on("messageReactionAdd", (reaction, user) => {
    }
 });
 
-bot.login("NTU0OTY2NzcyNjA0OTkzNTQ4.D2qN3w.uV-0Fy_FemGpPMx5p8nh_DsspQg");
+bot.login(process.env.token);
+console.log(process.env.token)

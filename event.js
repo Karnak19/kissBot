@@ -14,27 +14,9 @@ module.exports = class Event {
 
     static createEvent(message, args){
         console.log(args);
+        console.log(Date.parse(args[3]));
         // args : create , raid, HM ou non, Jour JJ/MM/AAAA, heure HH:MM, core ou raider ou 2
-
-        args[1] = args[1].toLowerCase();
-        if(args[1].startsWith('v')) {
-            args[1] = args[1].replace('v', '');
-        }
-        if(!RaidList.some(raid => raid.label === args[1])) console.log('non');//return createRaidError(message, args[1]);
-
-        let date = args[3].split("/");
-        let eventDate = Date.UTC(date[2], date[1]-1, date[0]);
-        if(!eventDate) console.log('wrong date');
-        let dateFormat = new Intl.DateTimeFormat('fr-FR', {
-            weekday: 'long',
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',});
-        return RaidList.some(raid => {
-            if(raid.label === args[1]) {
-                return message.channel.send(`${raid.name} ${args[2]} le ${dateFormat.format(eventDate)}`);
-            };
-        });
+        //if(!RaidList.some(raid => raid.label === args[1])) return createRaidError(message, args[1]);
 
     }
 
