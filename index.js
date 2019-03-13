@@ -1,18 +1,28 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 
-require("dotenv").config();
-
 const Google = require("./commands/google.js");
 const Roles = require("./commands/roles.js");
+const Event = require("./commands/event.js");
 
 const emojis = {
-   beer: "🍺"
+   beer: "🍺",
+   shield: "🛡",
+   sword: "⚔"
 };
-function emoji(code) {
-   return emojis[code];
+
+// Global usefull function (should be placed in another file)
+
+// if emoji has an id it is a custom one so we display it another way
+function emoji(emoji) {
+   return emoji.id === null ? emoji.name  :`<:${emoji.name}:${emoji.id}>`;
 }
 
+function userMention(user){
+    return `<@${user.id}>`
+}
+
+// Bot
 bot.on("ready", function() {
    bot.user.setActivity("Soulever des mères").catch(console.error);
 });
@@ -32,11 +42,9 @@ bot.on("message", function(message) {
 });
 
 bot.on("messageReactionAdd", (reaction, user) => {
-   if (reaction.emoji.name === emoji("beer")) {
-      console.log(reaction.users);
+   if(Event.signUp(reaction.message, reaction.emoji)){
+      reaction.message.channel.send(userMention(user) + " tu es inscrit en: " + emoji(reaction.emoji));
    }
 });
 
-bot.login(process.env.token);
-
-console.log(process.env.token);
+bot.login("NTU0OTY2NzcyNjA0OTkzNTQ4.D2qN3w.uV-0Fy_FemGpPMx5p8nh_DsspQg");
