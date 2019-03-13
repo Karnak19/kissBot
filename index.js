@@ -1,6 +1,8 @@
 const Discord = require("discord.js");
 const bot = new Discord.Client();
 
+require("dotenv").config();
+
 const Google = require("./commands/google.js");
 const Roles = require("./commands/roles.js");
 
@@ -35,4 +37,6 @@ bot.on("messageReactionAdd", (reaction, user) => {
    }
 });
 
-bot.login("NTU0OTY2NzcyNjA0OTkzNTQ4.D2qN3w.uV-0Fy_FemGpPMx5p8nh_DsspQg");
+bot.login(process.env.token);
+
+console.log(process.env.token);
