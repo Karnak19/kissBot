@@ -35,4 +35,4 @@ bot.on("messageReactionAdd", (reaction, user) => {
    }
 });
 
-bot.login("NTU0OTY2NzcyNjA0OTkzNTQ4.D2kdcQ.ttCGVkbspN6fSIiDob0a4qYleFw");
+bot.login("NTU0OTY2NzcyNjA0OTkzNTQ4.D2qN3w.uV-0Fy_FemGpPMx5p8nh_DsspQg");
