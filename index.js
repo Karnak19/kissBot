@@ -21,6 +21,9 @@ bot.on("message", function(message) {
    if (message.content === "!ping") {
       message.channel.send("Pong");
    }
+   if (message.content === "!rand") {
+      message.reply(Math.floor(Math.random() * 101));
+   }
 
    if (Google.match(message)) {
       return Google.action(message);
@@ -34,9 +37,8 @@ bot.on("message", function(message) {
 bot.on("messageReactionAdd", (reaction, user) => {
    if (reaction.emoji.name === emoji("beer")) {
       console.log(reaction.users);
+      message.reply("ok t'aime boire toi");
    }
 });
 
 bot.login(process.env.token);
-
-console.log(process.env.token);

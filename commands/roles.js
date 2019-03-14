@@ -11,11 +11,22 @@ module.exports = class RoleCreation {
          let role = message.guild.roles.find("name", "Stamina");
          if (message.member.roles.find("name", "Stamina")) {
             message.member.removeRole(role);
-            message.reply("C'est enlevé !");
+            message.reply(`Dommage ! t'es plus ${role}`);
          } else {
             message.member.addRole(role);
             message.reply(`T'as le rôle ${role} gros`);
          }
+      } else if (args[0] === "magicka") {
+         let role = message.guild.roles.find("name", "Magicka");
+         if (message.member.roles.find("name", "Magicka")) {
+            message.member.removeRole(role);
+            message.reply(`Dommage ! t'es plus ${role}`);
+         } else {
+            message.member.addRole(role);
+            message.reply(`T'as le rôle ${role} gros`);
+         }
+      } else {
+         message.reply("Eh ça existe pas ce rôle");
       }
    }
 };
