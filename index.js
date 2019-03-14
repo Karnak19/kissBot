@@ -14,7 +14,7 @@ function emoji(code) {
 }
 
 bot.on("ready", function() {
-   bot.user.setActivity("Soulever des mères").catch(console.error);
+   bot.user.setActivity("Dev with BazESO").catch(console.error);
 });
 
 bot.on("message", function(message) {
