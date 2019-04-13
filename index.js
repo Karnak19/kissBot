@@ -46,10 +46,25 @@ bot.on("message", function(message) {
 });
 
 bot.on("messageReactionAdd", (reaction, user) => {
-   if(Event.signUp(reaction.message, reaction.emoji)){
-      reaction.message.channel.send(userMention(user) + " tu es inscrit en: " + emoji(reaction.emoji));
+   if (Event.signUp(reaction.message, reaction.emoji) && user.username !== 'Kiss Bot'){
+      reaction.message.reactions.some(react => {
+         if(react.emoji !== reaction.emoji) {
+            react.fetchUsers(1).then(
+                 usr => {
+                     if(usr.has(user.id)){
+                        react.remove(user.id);
+                     }
+                 }
+             )
+         }
+      });
+      reaction.message.channel.send(userMention(user) + " tu es inscrit en: " + emoji(reaction.emoji)).then(
+          newMsg => {
+              setTimeout(() => { newMsg.delete() }, 3000);
+          }
+      );
+
    }
 });
 
-bot.login(process.env.token);
-console.log(process.env.token)
+bot.login("TOKEN_BOT");
