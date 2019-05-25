@@ -58,6 +58,7 @@ module.exports = [
     name: "Sunspire",
     url:
       "https://docs.google.com/spreadsheets/d/1j1qixqL06rANuES_tjwpXPnitBqYutsyDiX5kWap1AE/edit?usp=sharing",
-    image: "https://en.uesp.net/wiki/File:ON-place-The_High_Lunarium.jpg"
+    image:
+      "https://esosslfiles-a.akamaihd.net/cms/2019/05/bb54fa3e03c0c4bdd96fd185c712047e.jpg"
   }
 ];
