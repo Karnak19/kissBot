@@ -35,9 +35,9 @@ bot.on("message", function(message) {
 
   //   It makes the prod Bot crash
   //   TODO: Fix this
-  //   if (message.content === "!rand") {
-  //     message.reply(Math.floor(Math.random() * 101));
-  //   }
+  if (message.content === "!rand") {
+    message.reply(Math.floor(Math.random() * 101));
+  }
 
   if (Google.match(message)) {
     return Google.action(message);
