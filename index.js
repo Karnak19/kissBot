@@ -33,9 +33,11 @@ bot.on("message", function(message) {
     message.channel.send("Pong");
   }
 
-  if (message.content === "!rand") {
-    message.reply(Math.floor(Math.random() * 101));
-  }
+  //   It makes the prod Bot crash
+  //   TODO: Fix this
+  //   if (message.content === "!rand") {
+  //     message.reply(Math.floor(Math.random() * 101));
+  //   }
 
   if (Google.match(message)) {
     return Google.action(message);
