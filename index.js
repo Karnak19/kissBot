@@ -33,11 +33,9 @@ bot.on("message", function(message) {
     message.channel.send("Pong");
   }
 
-  //   It makes the prod Bot crash
-  //   TODO: Fix this
-  //   if (message.content === "!rand") {
-  //     message.reply(Math.floor(Math.random() * 101));
-  //   }
+  if (message.content === "!rand") {
+    message.reply(Math.floor(Math.random() * 101));
+  }
 
   if (Google.match(message)) {
     return Google.action(message);
@@ -52,27 +50,37 @@ bot.on("message", function(message) {
   }
 });
 
+bot.on("messageReactionRemove", (reaction, user) => {
+  if (
+    Event.signUp(reaction.message, reaction.emoji) &&
+    user.username !== "Kiss Bot Dev"
+  ) {
+    if(reaction.users.size < 1) {
+      reaction.message.react(reaction.emoji);
+    }
+  }
+})
+
 bot.on("messageReactionAdd", (reaction, user) => {
   if (
     Event.signUp(reaction.message, reaction.emoji) &&
-    user.username !== "Kiss Bot"
+    user.username !== "Kiss Bot Dev"
   ) {
+    let author = reaction.message.author;
     reaction.message.reactions.some(react => {
-      if (react.emoji !== reaction.emoji) {
-        react.fetchUsers(1).then(usr => {
+      react.fetchUsers(1).then(usr => {
+        if(usr.size < 3 && usr.has(author.id)) {
+          reaction.remove(author.id);
+        }
+        if (react.emoji !== reaction.emoji) {
           if (usr.has(user.id)) {
             react.remove(user.id);
           }
-        });
-      }
-    });
-    reaction.message.channel
-      .send(userMention(user) + " tu es inscrit en: " + emoji(reaction.emoji))
-      .then(newMsg => {
-        setTimeout(() => {
-          newMsg.delete();
-        }, 3000);
+        }
       });
+    });
+    user.
+      send(" tu es inscrit en: " + emoji(reaction.emoji))
   }
 });
 
