@@ -1,5 +1,6 @@
 const RaidList = require('../global/raidlist.js');
 const {dateFormat} = require('../global/helpers.js');
+const allowedEmojis = require('../global/allowedEmoji.js');
 module.exports = class Event {
 
     /*
@@ -21,10 +22,11 @@ module.exports = class Event {
         args.shift();
 
         if(args[0] === 'create') return this.createEvent(message, args);
+        if(args[0] === 'help') return this.helpMessage(message);
     }
 
     static helpMessage(message){
-        return message.channel.send('```!event create [raid] [Progress|Score|HM|Vitalité] [JJ/MM/AAA] [HH:MM] [ouvert|selectif] [@role,@role1,@role2] \n ' +
+        return message.channel.send('```!event create [raid] [JJ/MM/AAA] [HH:MM] [Progress|Score|HM|Vitalité]  [ouvert|selectif] [@role,@role1,@role2] \n ' +
             'Pour obtenir la liste des raids disponible tappez: !event raidlist```');
     }
 
@@ -55,18 +57,15 @@ module.exports = class Event {
 
     static createEvent(message, args){
         // args : create , raid, HM ou non, Jour JJ/MM/AAAA, heure HH:MM, core ou raider ou 2
-        if(args[1] === 'help' || args.length < 2){
-            return this.helpMessage(message);
-        }
         if(args.length < 3) return this.createError('format',message);
         args[1] = args[1].toLowerCase();
         if(args[1].startsWith('v')) {
             args[1] = args[1].replace('v', '');
         }
 
-        let date = args[3].split("/");
+        let date = args[2].split("/");
 
-        let hours = args[4].split(":");
+        let hours = args[3].split(":");
         let eventDate = Date.UTC(date[2], date[1]-1, date[0], hours[0], hours[1]);
 
         if(!eventDate) return this.createError('date',message);
@@ -101,7 +100,7 @@ module.exports = class Event {
                             inline:true
                         },{
                             name:'🏁 **Objectif**',
-                            value: args[2],
+                            value: args[4] || 'Progress',
                             inline:true
                         }, {
                             name:'📅 **Date**',
@@ -109,7 +108,7 @@ module.exports = class Event {
                             inline:true
                         }, {
                             name:'⛔ **Ouvert**',
-                            value:args[5],
+                            value:args[5] || 'Ouvert',
                             inline:true
                         },{
                             name:'\u200B',
@@ -133,33 +132,8 @@ module.exports = class Event {
     // EventString = la string qui va permettre de le différencier des autres messages;
     static signUp(message, emoji){
         let eventString = '[Evenement]';
-        return message.author.username === 'Kiss Bot'
+        return message.author.username === process.env.botUsername
             && message.content.includes(eventString)
-            && this.allowedEmojis(emoji);
+            && allowedEmojis(emoji);
     }
-
-    // should be a global array
-    static allowedEmojis(emoji){
-        switch(emoji.name) {
-            case "🛡":
-            return true;
-
-            case "⚔":
-            return true;
-
-            case "➖":
-            return true;
-
-            case "🏥":
-            return true;
-
-            case "❌":
-            return true;
-
-            default:
-            return false;
-            
-        }
-    }
- };
- 
+};
