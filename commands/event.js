@@ -132,7 +132,7 @@ module.exports = class Event {
     // EventString = la string qui va permettre de le différencier des autres messages;
     static signUp(message, emoji){
         let eventString = '[Evenement]';
-        return message.author.username === 'Kiss Bot Dev'
+        return message.author.username === process.env.botUsername
             && message.content.includes(eventString)
             && allowedEmojis(emoji);
     }

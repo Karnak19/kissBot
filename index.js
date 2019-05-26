@@ -53,7 +53,7 @@ bot.on("message", function(message) {
 bot.on("messageReactionRemove", (reaction, user) => {
   if (
     Event.signUp(reaction.message, reaction.emoji) &&
-    user.username !== "Kiss Bot Dev"
+    user.username !== process.env.botUsername
   ) {
     if(reaction.users.size < 1) {
       reaction.message.react(reaction.emoji);
@@ -64,7 +64,7 @@ bot.on("messageReactionRemove", (reaction, user) => {
 bot.on("messageReactionAdd", (reaction, user) => {
   if (
     Event.signUp(reaction.message, reaction.emoji) &&
-    user.username !== "Kiss Bot Dev"
+    user.username !== process.env.botUsername
   ) {
     let author = reaction.message.author;
     reaction.message.reactions.some(react => {
