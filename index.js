@@ -55,11 +55,11 @@ bot.on("messageReactionRemove", (reaction, user) => {
     Event.signUp(reaction.message, reaction.emoji) &&
     user.username !== process.env.botUsername
   ) {
-    if(reaction.users.size < 1) {
+    if (reaction.users.size < 1) {
       reaction.message.react(reaction.emoji);
     }
   }
-})
+});
 
 bot.on("messageReactionAdd", (reaction, user) => {
   if (
@@ -69,7 +69,7 @@ bot.on("messageReactionAdd", (reaction, user) => {
     let author = reaction.message.author;
     reaction.message.reactions.some(react => {
       react.fetchUsers(1).then(usr => {
-        if(usr.size < 3 && usr.has(author.id)) {
+        if (usr.size < 3 && usr.has(author.id)) {
           reaction.remove(author.id);
         }
         if (react.emoji !== reaction.emoji) {
@@ -79,8 +79,8 @@ bot.on("messageReactionAdd", (reaction, user) => {
         }
       });
     });
-    user.
-      send(" tu es inscrit en: " + emoji(reaction.emoji))
+
+    user.send(" tu es inscrit en: " + emoji(reaction.emoji));
   }
 });
 
