@@ -82,53 +82,50 @@ module.exports = class Event {
     return RaidList.some(raid => {
       if (raid.label === args[1]) {
         return message.channel
-          .send(
-            "**[Evenement]**\n" +
-              roles.toString() +
-              " \n _Réagissez a ce message avec :\n" +
-              "🛡 Si vous souhaitez TANK\n" +
-              "⚔ Si vous souhaitez DPS\n" +
-              "🏥 Si vous souhaitez HEAL\n" +
-              "➖ Si vous êtes incertain\n" +
-              "❌ Si vous êtes absent_",
-            {
-              type: "PINS_ADD",
-              embed: {
-                author: process.env.botUsername,
-                title: "**Raid, n'oubliez pas de vous inscrire !**",
-                image: {
-                  url: raid.image
+          .send("**[Evenement]**\n", {
+            type: "PINS_ADD",
+            embed: {
+              author: {
+                name: process.env.botUsername,
+                icon_url:
+                  "https://cdn.discordapp.com/app-icons/554966772604993548/a01ce45d641c6e3f8752bc4cbf4cbb6b.png"
+              },
+              thumbnail: {
+                url:
+                  "https://cdn.discordapp.com/app-icons/554966772604993548/a01ce45d641c6e3f8752bc4cbf4cbb6b.png"
+              },
+              title: `**${raid.name} : inscrivez-vous !**`,
+              image: {
+                url: raid.image
+              },
+              fields: [
+                {
+                  name: " ⚜ **Raid**",
+                  value: raid.name,
+                  inline: true
                 },
-                url: raid.url,
-                fields: [
-                  {
-                    name: " ⚜ **Raid**",
-                    value: raid.name,
-                    inline: true
-                  },
-                  {
-                    name: "🏁 **Objectif**",
-                    value: args[4] || "Progress",
-                    inline: true
-                  },
-                  {
-                    name: "📅 **Date**",
-                    value: dateFormat.format(eventDate),
-                    inline: true
-                  },
-                  {
-                    name: "⛔ **Ouvert**",
-                    value: args[5] || "Ouvert",
-                    inline: true
-                  },
-                  {
-                    name: "\u200B",
-                    value: raid.url
-                  }
-                ]
-              }
+                {
+                  name: "🏁 **Objectif**",
+                  value: args[4] || "Progress",
+                  inline: true
+                },
+                {
+                  name: "📅 **Date**",
+                  value: dateFormat.format(eventDate),
+                  inline: true
+                },
+                {
+                  name: "⛔ **Ouvert**",
+                  value: args[5] || "Ouvert",
+                  inline: true
+                },
+                {
+                  name: "\u200B",
+                  value: `[LE DOCUMENT](${raid.url})`
+                }
+              ]
             }
-          )
+          })
           .then(msg => {
             msg
               .react("🛡")
