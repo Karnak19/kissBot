@@ -12,7 +12,7 @@ const eventHelp = {
     color: 10038562,
     fields: [
       {
-        name: "[Raid name] : required <:pogey:582510587834007552>",
+        name: "[Raid name] : required <:pogey:581098478080491522>",
         value:
           "```ss  :  Sunspire```\
                ```cr  :  Cloudrest```\
@@ -25,12 +25,12 @@ const eventHelp = {
       },
       { name: "\u200b", value: "\u200b" },
       {
-        name: "[date] : required <:pogey:582510587834007552>",
+        name: "[date] : required <:pogey:581098478080491522>",
         value: "```DD/MM/YYYY```",
         inline: true
       },
       {
-        name: "[hours] : required <:pogey:582510587834007552>",
+        name: "[hours] : required <:pogey:581098478080491522>",
         value: "```HH:MM``` (24-hour clock)",
         inline: true
       },
