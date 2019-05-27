@@ -49,6 +49,12 @@ const eventHelp = {
         value: "```ouvert```\
                ```selectif```",
         inline: true
+      },
+      { name: "\u200b", value: "\u200b" },
+      {
+        name: "Examples :",
+        value:
+          "```!event cr 30/05/2019 21:00 progress (optional) selectif (optional)```"
       }
     ]
   }
