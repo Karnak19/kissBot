@@ -81,17 +81,13 @@ module.exports = class Event {
     }
     return RaidList.some(raid => {
       let mentionTag = "";
-      switch (args[5]) {
-        case "ouvert":
-          // Tag Raiders, Recrues & Copains
-          return (mentionTag =
-            "<@&462944441418645504> <@&463026026000154625> <@&463040700636856330>");
-        case "selectif":
-          // Tag only Raiders
-          return (mentionTag = "<@&462944441418645504>");
-        default:
-          //Tag Raiders & Recrues
-          mentionTag = "<@&462944441418645504> <@&463026026000154625>";
+      if (args[5] === "ouvert") {
+        mentionTag =
+          "<@&462944441418645504> <@&463026026000154625> <@&463040700636856330>";
+      } else if (args[5] === "selectif") {
+        mentionTag = "<@&462944441418645504>";
+      } else {
+        mentionTag = "<@&462944441418645504> <@&463026026000154625>";
       }
       if (raid.label === args[1]) {
         return message.channel
