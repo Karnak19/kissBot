@@ -80,9 +80,22 @@ module.exports = class Event {
       }
     }
     return RaidList.some(raid => {
+      let mentionTag = "";
+      switch (args[5]) {
+        case "ouvert":
+          // Tag Raiders, Recrues & Copains
+          return (mentionTag =
+            "<@&462944441418645504> <@&463026026000154625> <@&463040700636856330>");
+        case "selectif":
+          // Tag only Raiders
+          return (mentionTag = "<@&462944441418645504>");
+        default:
+          //Tag Raiders & Recrues
+          mentionTag = "<@&462944441418645504> <@&463026026000154625>";
+      }
       if (raid.label === args[1]) {
         return message.channel
-          .send("**[Evenement]**\n", {
+          .send(`**[Evenement]**\n ${mentionTag}`, {
             type: "PINS_ADD",
             embed: {
               author: {
@@ -111,12 +124,13 @@ module.exports = class Event {
                 },
                 {
                   name: "📅 **Date**",
-                  value: dateFormat.format(eventDate),
+                  //  value: dateFormat.format(eventDate),
+                  value: `${args[2]}, ${args[3]}`,
                   inline: true
                 },
                 {
                   name: "⛔ **Ouvert**",
-                  value: args[5] || "Ouvert",
+                  value: mentionTag,
                   inline: true
                 },
                 {
