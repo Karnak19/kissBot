@@ -1,6 +1,7 @@
+const moment = require("moment");
+moment.locale("fr");
 const RaidList = require("../global/raidlist.js");
 const eventHelp = require("../global/eventHelp.js");
-const { dateFormat } = require("../global/helpers.js");
 const allowedEmojis = require("../global/allowedEmoji.js");
 module.exports = class Event {
   /*
@@ -67,7 +68,9 @@ module.exports = class Event {
     let date = args[2].split("/");
 
     let hours = args[3].split(":");
-    let eventDate = Date.UTC(date[2], date[1] - 1, date[0], hours[0], hours[1]);
+    let eventDate = new Date(
+      Date.UTC(date[2], date[1] - 1, date[0], hours[0], hours[1])
+    );
 
     if (!eventDate) return this.createError("date", message);
     if (!RaidList.some(raid => raid.label === args[1]))
@@ -120,8 +123,8 @@ module.exports = class Event {
                 },
                 {
                   name: "📅 **Date**",
-                  //  value: dateFormat.format(eventDate),
-                  value: `${args[2]}, ${args[3]}`,
+                  value: moment(eventDate).format("LLLL"),
+                  // value: `${args[2]}, ${args[3]}`,
                   inline: true
                 },
                 {
