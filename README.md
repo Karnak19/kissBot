@@ -60,8 +60,8 @@ selectif : roster only
 
 **Examples :**
 Respect the argument's order
-`!event ss 27/05/2019 21:00`
-`!event ss 27/05/2019 21:00 hm selectif`
+`!event create ss 27/05/2019 21:00`
+`!event create ss 27/05/2019 21:00 hm selectif`
 
 ### Rand : `!rand`
 
