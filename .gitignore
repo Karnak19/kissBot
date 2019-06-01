@@ -2,3 +2,8 @@
 .env
 .idea/
 *.orig
+client_secret.json
+credentials.json
+token.json
+sheet.js
+*.http

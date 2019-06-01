@@ -51,7 +51,6 @@ module.exports = class Event {
         return this.createDateError(message);
       case "raid":
         return this.createRaidError(message);
-
       case "format":
         return this.createFormatError(message);
     }
@@ -71,6 +70,10 @@ module.exports = class Event {
     let eventDate = new Date(
       Date.UTC(date[2], date[1] - 1, date[0], hours[0], hours[1])
     );
+    let eventDay = moment(eventDate).format("dddd");
+    eventDate = moment(eventDate).format("LLLL");
+    eventDay = eventDay.toUpperCase();
+    eventDate = eventDate.charAt(0).toUpperCase() + eventDate.slice(1);
 
     if (!eventDate) return this.createError("date", message);
     if (!RaidList.some(raid => raid.label === args[1]))
@@ -94,7 +97,7 @@ module.exports = class Event {
       }
       if (raid.label === args[1]) {
         return message.channel
-          .send(`**[Evenement]**\n ${mentionTag}`, {
+          .send(`**[Evenement]** ${eventDay}\n ${mentionTag}`, {
             type: "PINS_ADD",
             embed: {
               author: {
@@ -123,7 +126,7 @@ module.exports = class Event {
                 },
                 {
                   name: "📅 **Date**",
-                  value: moment(eventDate).format("LLLL"),
+                  value: eventDate,
                   // value: `${args[2]}, ${args[3]}`,
                   inline: true
                 },
