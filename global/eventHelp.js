@@ -54,7 +54,7 @@ const eventHelp = {
       {
         name: "Examples :",
         value:
-          "```!event cr 30/05/2019 21:00 progress (optional) selectif (optional)```"
+          "```!event create cr 30/05/2019 21:00 progress (optional) selectif (optional)```"
       }
     ]
   }
