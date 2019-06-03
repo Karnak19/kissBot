@@ -27,6 +27,7 @@ module.exports = class Team {
           const roster = [];
           const mainTank = [];
           const offTank = [];
+          const offTank2 = [];
           const dd1 = [];
           const dd2 = [];
           const dd3 = [];
@@ -35,14 +36,18 @@ module.exports = class Team {
           const dd6 = [];
           const dd7 = [];
           const dd8 = [];
+          const dd9 = [];
+          const dd10 = [];
           const heal1 = [];
           const heal2 = [];
+
           const keysMap = { 0: "pseudo", 1: "class" };
 
           doc.getRows(2, function(err, rows) {
             rows.map(row => {
               mainTank.push(row.maintank);
               offTank.push(row.offtank);
+              offTank2.push(row["offtank_2"]);
               dd1.push(row["dd"]);
               dd2.push(row["dd_2"]);
               dd3.push(row["dd_3"]);
@@ -51,6 +56,8 @@ module.exports = class Team {
               dd6.push(row["dd_6"]);
               dd7.push(row["dd_7"]);
               dd8.push(row["dd_8"]);
+              dd9.push(row["dd_9"]);
+              dd10.push(row["dd_10"]);
               heal1.push(row["heal"]);
               heal2.push(row["heal_2"]);
             });
@@ -58,6 +65,7 @@ module.exports = class Team {
             roster.push(
               mainTank,
               offTank,
+              offTank2,
               dd1,
               dd2,
               dd3,
@@ -66,6 +74,8 @@ module.exports = class Team {
               dd6,
               dd7,
               dd8,
+              dd9,
+              dd10,
               heal1,
               heal2
             );
@@ -74,6 +84,7 @@ module.exports = class Team {
               let memberObj = { ...member };
               return objectRenameKeys(memberObj, keysMap);
             });
+            console.log(rosterObjects);
 
             return message.channel.send({
               embed: {
@@ -94,16 +105,22 @@ module.exports = class Team {
                 fields: [
                   {
                     name: "**⚔ DPS ⚔**",
-                    value: `**${rosterObjects[2].pseudo}**, ${
-                      rosterObjects[2].class
+                    value: `**${rosterObjects[3].pseudo}**, ${
+                      rosterObjects[3].class
                     }\n\
-                    **${rosterObjects[3].pseudo}**, ${rosterObjects[3].class}\n\
                     **${rosterObjects[4].pseudo}**, ${rosterObjects[4].class}\n\
                     **${rosterObjects[5].pseudo}**, ${rosterObjects[5].class}\n\
                     **${rosterObjects[6].pseudo}**, ${rosterObjects[6].class}\n\
                     **${rosterObjects[7].pseudo}**, ${rosterObjects[7].class}\n\
                     **${rosterObjects[8].pseudo}**, ${rosterObjects[8].class}\n\
-                    **${rosterObjects[9].pseudo}**, ${rosterObjects[9].class}`
+                    **${rosterObjects[9].pseudo}**, ${rosterObjects[9].class}\n\
+                    **${rosterObjects[10].pseudo}**, ${
+                      rosterObjects[10].class
+                    }\n\
+                    **${rosterObjects[11].pseudo}**, ${
+                      rosterObjects[11].class
+                    }\n\
+                    **${rosterObjects[12].pseudo}**, ${rosterObjects[12].class}`
                   },
                   { name: "\u200B", value: "\u200B" },
                   {
@@ -111,17 +128,18 @@ module.exports = class Team {
                     value: `**${rosterObjects[0].pseudo}**, ${
                       rosterObjects[0].class
                     }\n\
-                    **${rosterObjects[1].pseudo}**, ${rosterObjects[1].class}`,
+                    **${rosterObjects[1].pseudo}**, ${rosterObjects[1].class}\n\
+                    **${rosterObjects[2].pseudo}**, ${rosterObjects[2].class}`,
                     inline: true
                   },
                   { name: "\u200B", value: "\u200B" },
                   {
                     name: "**🚑 Healers 🚑**",
-                    value: `**${rosterObjects[10].pseudo}**, ${
-                      rosterObjects[10].class
+                    value: `**${rosterObjects[13].pseudo}**, ${
+                      rosterObjects[13].class
                     }\n\
-                    **${rosterObjects[11].pseudo}**, ${
-                      rosterObjects[11].class
+                    **${rosterObjects[14].pseudo}**, ${
+                      rosterObjects[14].class
                     }`,
                     inline: true
                   }
