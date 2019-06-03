@@ -36,11 +36,11 @@ module.exports = [
       "https://esosslfiles-a.akamaihd.net/cms/2017/10/8703be03dabbac6811cf1e8970e2e415.jpg"
   },
   {
-    id: "1JK4OqSud938J39PPbz6zfLLFyR6_lN1tayxB9hwBjZ8",
+    id: "1fSB7pLiJ4P0QP0e5fQSyc4o1iIp3b-EH3eWBemqpKoQ",
     label: "aa",
     name: "Aetherian Archive",
     url:
-      "https://docs.google.com/spreadsheets/d/1JK4OqSud938J39PPbz6zfLLFyR6_lN1tayxB9hwBjZ8/edit#gid=0",
+      "https://docs.google.com/spreadsheets/d/1fSB7pLiJ4P0QP0e5fQSyc4o1iIp3b-EH3eWBemqpKoQ/edit#gid=0",
     image:
       "https://latenighteso.com/wp-content/uploads/2017/04/aetherian-archive-guide-1024x400.jpg"
   },
