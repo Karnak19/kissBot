@@ -47,7 +47,7 @@ module.exports = [
   {
     id: "1JK4OqSud938J39PPbz6zfLLFyR6_lN1tayxB9hwBjZ8",
     label: "hof",
-    name: "Hall of Fabrication",
+    name: "Halls of Fabrication",
     url:
       "https://docs.google.com/spreadsheets/d/1JK4OqSud938J39PPbz6zfLLFyR6_lN1tayxB9hwBjZ8/edit#gid=0",
     image: "http://teso-delve.com/gfx/dungeon/halls-of-fabrication.jpg"
@@ -55,10 +55,10 @@ module.exports = [
   {
     id: "1CJZY5VOl0mz8PE91gdf5b1l8KygUrg3A6CfSwPjBcHs",
     label: "mol",
-    name: "Maw of Lorkaj",
+    name: "Maw of Lorkhaj",
     url:
       "https://docs.google.com/spreadsheets/d/1CJZY5VOl0mz8PE91gdf5b1l8KygUrg3A6CfSwPjBcHs/edit#gid=0",
-    image: "https://en.uesp.net/wiki/File:ON-place-The_High_Lunarium.jpg"
+    image: "https://images.uesp.net/a/a0/ON-place-The_High_Lunarium.jpg"
   },
   {
     id: "1j1qixqL06rANuES_tjwpXPnitBqYutsyDiX5kWap1AE",
