@@ -5,6 +5,7 @@ const bot = new Discord.Client();
 const Google = require("./commands/google.js");
 const Roles = require("./commands/roles.js");
 const Event = require("./commands/event.js");
+const Team = require("./commands/team.js");
 
 const emojis = {
   beer: "🍺",
@@ -67,6 +68,10 @@ bot.on("message", function(message) {
 
   if (Event.match(message)) {
     return Event.action(message);
+  }
+
+  if (Team.match(message)) {
+    return Team.action(message);
   }
 });
 

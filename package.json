@@ -15,7 +15,8 @@
     "dotenv": "^7.0.0",
     "google-spreadsheet": "^2.0.7",
     "googleapis": "^39.2.0",
-    "moment": "^2.24.0"
+    "moment": "^2.24.0",
+    "object-rename-keys": "^1.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.18.10",
