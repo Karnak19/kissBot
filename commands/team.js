@@ -25,66 +25,69 @@ module.exports = class Team {
 
         doc.useServiceAccountAuth(credentials, function(err) {
           const roster = [];
-          const mainTank = [];
-          const offTank = [];
-          const offTank2 = [];
-          const dd1 = [];
-          const dd2 = [];
-          const dd3 = [];
-          const dd4 = [];
-          const dd5 = [];
-          const dd6 = [];
-          const dd7 = [];
-          const dd8 = [];
-          const dd9 = [];
-          const dd10 = [];
-          const heal1 = [];
-          const heal2 = [];
-
-          const keysMap = { 0: "pseudo", 1: "class" };
+          const player1 = [];
+          const player2 = [];
+          const player3 = [];
+          const player4 = [];
+          const player5 = [];
+          const player6 = [];
+          const player7 = [];
+          const player8 = [];
+          const player9 = [];
+          const player10 = [];
+          const player11 = [];
+          const player12 = [];
+          const keysMap = { 0: "role", 1: "name", 2: "class" };
 
           doc.getRows(2, function(err, rows) {
             rows.map(row => {
-              mainTank.push(row.maintank);
-              offTank.push(row.offtank);
-              offTank2.push(row["offtank_2"]);
-              dd1.push(row["dd"]);
-              dd2.push(row["dd_2"]);
-              dd3.push(row["dd_3"]);
-              dd4.push(row["dd_4"]);
-              dd5.push(row["dd_5"]);
-              dd6.push(row["dd_6"]);
-              dd7.push(row["dd_7"]);
-              dd8.push(row["dd_8"]);
-              dd9.push(row["dd_9"]);
-              dd10.push(row["dd_10"]);
-              heal1.push(row["heal"]);
-              heal2.push(row["heal_2"]);
+              player1.push(row["player"]);
+              player2.push(row["player_2"]);
+              player3.push(row["player_3"]);
+              player4.push(row["player_4"]);
+              player5.push(row["player_5"]);
+              player6.push(row["player_6"]);
+              player7.push(row["player_7"]);
+              player8.push(row["player_8"]);
+              player9.push(row["player_9"]);
+              player10.push(row["player_10"]);
+              player11.push(row["player_11"]);
+              player12.push(row["player_12"]);
             });
 
             roster.push(
-              mainTank,
-              offTank,
-              offTank2,
-              dd1,
-              dd2,
-              dd3,
-              dd4,
-              dd5,
-              dd6,
-              dd7,
-              dd8,
-              dd9,
-              dd10,
-              heal1,
-              heal2
+              player1,
+              player2,
+              player3,
+              player4,
+              player5,
+              player6,
+              player7,
+              player8,
+              player9,
+              player10,
+              player11,
+              player12
             );
 
             const rosterObjects = roster.map(member => {
               let memberObj = { ...member };
               return objectRenameKeys(memberObj, keysMap);
             });
-            console.log(rosterObjects);
+            const tanks = rosterObjects.filter(tank => {
+              return tank.role.includes("Tank");
+            });
+
+            const deeps = rosterObjects.filter(dps => {
+              return dps.role.includes("DD");
+            });
+            const healers = rosterObjects.filter(heal => {
+              return heal.role.includes("Heal");
+            });
+
+            console.table(tanks);
+            console.table(deeps);
+            console.table(healers);
 
             return message.channel.send({
               embed: {
@@ -105,42 +108,30 @@ module.exports = class Team {
                 fields: [
                   {
                     name: "**⚔ DPS ⚔**",
-                    value: `**${rosterObjects[3].pseudo}**, ${
-                      rosterObjects[3].class
-                    }\n\
-                    **${rosterObjects[4].pseudo}**, ${rosterObjects[4].class}\n\
-                    **${rosterObjects[5].pseudo}**, ${rosterObjects[5].class}\n\
-                    **${rosterObjects[6].pseudo}**, ${rosterObjects[6].class}\n\
-                    **${rosterObjects[7].pseudo}**, ${rosterObjects[7].class}\n\
-                    **${rosterObjects[8].pseudo}**, ${rosterObjects[8].class}\n\
-                    **${rosterObjects[9].pseudo}**, ${rosterObjects[9].class}\n\
-                    **${rosterObjects[10].pseudo}**, ${
-                      rosterObjects[10].class
-                    }\n\
-                    **${rosterObjects[11].pseudo}**, ${
-                      rosterObjects[11].class
-                    }\n\
-                    **${rosterObjects[12].pseudo}**, ${rosterObjects[12].class}`
+                    value: `${deeps
+                      .map(dps => {
+                        return `**${dps.name}**, ${dps.class}\n`;
+                      })
+                      .join("")}`
                   },
                   { name: "\u200B", value: "\u200B" },
                   {
                     name: "**🛡 Tanks 🛡**",
-                    value: `**${rosterObjects[0].pseudo}**, ${
-                      rosterObjects[0].class
-                    }\n\
-                    **${rosterObjects[1].pseudo}**, ${rosterObjects[1].class}\n\
-                    **${rosterObjects[2].pseudo}**, ${rosterObjects[2].class}`,
+                    value: `${tanks
+                      .map(tank => {
+                        return `**${tank.name}**, ${tank.class}\n`;
+                      })
+                      .join("")}`,
                     inline: true
                   },
                   { name: "\u200B", value: "\u200B" },
                   {
                     name: "**🚑 Healers 🚑**",
-                    value: `**${rosterObjects[13].pseudo}**, ${
-                      rosterObjects[13].class
-                    }\n\
-                    **${rosterObjects[14].pseudo}**, ${
-                      rosterObjects[14].class
-                    }`,
+                    value: `${healers
+                      .map(heal => {
+                        return `**${heal.name}**, ${heal.class}\n`;
+                      })
+                      .join("")}`,
                     inline: true
                   }
                 ]
