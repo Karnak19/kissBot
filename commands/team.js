@@ -110,8 +110,10 @@ module.exports = class Team {
                   {
                     name: "**⚔ DPS ⚔**",
                     value: `${deeps
-                      .map(dps => {
-                        return `**${dps.name}**, ${dps.class}\n`;
+                      .map((dps, i) => {
+                        if (i % 2 == 0) {
+                          return `**${dps.name}**, ${dps.class}\n`;
+                        }
                       })
                       .join("")}`
                   },
@@ -125,7 +127,6 @@ module.exports = class Team {
                       .join("")}`,
                     inline: true
                   },
-                  { name: "\u200B", value: "\u200B" },
                   {
                     name: "**🚑 Healers 🚑**",
                     value: `${healers
@@ -134,6 +135,10 @@ module.exports = class Team {
                       })
                       .join("")}`,
                     inline: true
+                  },
+                  {
+                    name: "\u200B",
+                    value: `[**LE DOCUMENT**](${raid.url})`
                   }
                 ]
               }
