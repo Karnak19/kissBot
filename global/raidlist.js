@@ -27,11 +27,11 @@ module.exports = [
       "https://images.uesp.net/thumb/2/21/ON-interior-Sanctum_Ophidia.jpg/800px-ON-interior-Sanctum_Ophidia.jpg"
   },
   {
-    id: "1YaeF9jxRWwQush7FINSGH5kd7v9A3yp4dp7rhqHy6n0",
+    id: "1q_YXheKXiSk3ZeUn2itkh1c1h6qAgW9zWt1Rzb1zfeA",
     label: "as",
     name: "Asylum Sanctorium",
     url:
-      "https://docs.google.com/spreadsheets/d/1YaeF9jxRWwQush7FINSGH5kd7v9A3yp4dp7rhqHy6n0/edit#gid=0",
+      "https://docs.google.com/spreadsheets/d/1q_YXheKXiSk3ZeUn2itkh1c1h6qAgW9zWt1Rzb1zfeA/edit#gid=0",
     image:
       "https://esosslfiles-a.akamaihd.net/cms/2017/10/8703be03dabbac6811cf1e8970e2e415.jpg"
   },
