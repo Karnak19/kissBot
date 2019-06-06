@@ -110,10 +110,8 @@ module.exports = class Team {
                   {
                     name: "**⚔ DPS ⚔**",
                     value: `${deeps
-                      .map((dps, i) => {
-                        if (i % 2 == 0) {
-                          return `**${dps.name}**, ${dps.class}\n`;
-                        }
+                      .map(dps => {
+                        return `**${dps.name}**, ${dps.class}\n`;
                       })
                       .join("")}`
                   },
