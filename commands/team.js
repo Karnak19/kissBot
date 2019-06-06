@@ -4,7 +4,6 @@ const raidList = require("../global/raidlist.js");
 const GoogleSpreadsheet = require("google-spreadsheet");
 const objectRenameKeys = require("object-rename-keys");
 
-const creds = require("../client_secret.json");
 const credentials = require("../google_credentials.js");
 
 module.exports = class Team {
