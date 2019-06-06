@@ -15,6 +15,8 @@
 
 `TOKEN` = is the bot token
 `botUsername` = the Name of you Discord Bot
+`GOOGLE_CLIENT_EMAIL` = email Credentials for Google API
+`GOOGLE_PRIVATE_KEY` = key Credentials for Google API
 You can see an example file as `.example.env`
 
 ## Commands
@@ -66,3 +68,17 @@ Respect the argument's order
 ### Rand : `!rand`
 
 Return a random number between 1 - 100
+
+### Team : `!team`
+
+```
+[raid] : required
+ss    :           Sunspire
+cr    :           Cloudrest
+as    :           Asylum Sanctorium
+hof   :           Halls of Fabrication
+mol   :           Maw of Lorkhaj
+hrc   :           Hel Ra Citadel
+so    :           Sanctum Ophidia
+aa    :           Aetherian Archive
+```
