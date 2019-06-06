@@ -134,10 +134,6 @@ module.exports = class Event {
                   name: "⛔ **Ouvert**",
                   value: mentionTag,
                   inline: true
-                },
-                {
-                  name: "\u200B",
-                  value: `[LE DOCUMENT](${raid.url})`
                 }
               ]
             }
