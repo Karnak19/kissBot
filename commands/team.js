@@ -24,6 +24,7 @@ module.exports = class Team {
         const doc = new GoogleSpreadsheet(raid.id);
 
         doc.useServiceAccountAuth(credentials, function(err) {
+          let mentionTag = "<@&462944441418645504> <@&463026026000154625>";
           const roster = [];
           const player1 = [];
           const player2 = [];
@@ -74,6 +75,7 @@ module.exports = class Team {
               let memberObj = { ...member };
               return objectRenameKeys(memberObj, keysMap);
             });
+
             const tanks = rosterObjects.filter(tank => {
               return tank.role.includes("Tank");
             });
@@ -89,7 +91,7 @@ module.exports = class Team {
             console.table(deeps);
             console.table(healers);
 
-            return message.channel.send({
+            return message.channel.send(`**[Team]** ${mentionTag}`, {
               embed: {
                 author: {
                   name: process.env.botUsername,
