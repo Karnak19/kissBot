@@ -34,19 +34,6 @@ bot.on("message", function(message) {
   if (Rand.match(message)) {
     return Rand.action(message);
   }
-  /*if (message.content === "!rand") {
-    let rand = Math.floor(Math.random() * 101);
-    if (rand >= 90) message.reply(`${rand} ${customMojis.pogey}`);
-    else if (rand >= 80) message.reply(`${rand} ${customMojis.pagchomp}`);
-    else if (rand >= 70) message.reply(`${rand} ${customMojis.peepolove}`);
-    else if (rand >= 60) message.reply(`${rand} ${customMojis.peepo}`);
-    else if (rand >= 50) message.reply(`${rand} ${customMojis.pepe}`);
-    else if (rand >= 40) message.reply(`${rand} ${customMojis.risitas}`);
-    else if (rand >= 30) message.reply(`${rand} ${customMojis.pepehang}`);
-    else if (rand >= 20) message.reply(`${rand} ${customMojis.ree}`);
-    else if (rand >= 10) message.reply(`${rand} ${customMojis.hidethepain}`);
-    else if (rand >= 00) message.reply(`${rand} ${customMojis.lol}`);
-  }*/
 
   if (Google.match(message)) {
     return Google.action(message);
