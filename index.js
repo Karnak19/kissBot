@@ -6,22 +6,9 @@ const Google = require("./commands/google.js");
 const Roles = require("./commands/roles.js");
 const Event = require("./commands/event.js");
 const Team = require("./commands/team.js");
+const Rand = require("./commands/rand.js");
 
-const emojis = {
-  beer: "🍺",
-  shield: "🛡",
-  sword: "⚔",
-  pogey: "<:pogey:581098478080491522>",
-  hidethepain: "<:hidethepain:462810248059682816>",
-  peepolove: "<:peepolove:470754803149176835>",
-  pepe: "<:pepe:477440085403369472>",
-  ree: "<:REE:534698576274784257>",
-  pagchomp: "<:pagchomp:581098572578160663>",
-  risitas: "<:risitas:486242894970355714>",
-  peepo: "<:peepo:484754067969671179>",
-  pepehang: "<:pepehang:505346510716665856>",
-  lol: "<:lol:462808930058371073>"
-};
+const customMojis = require("./global/customMojis.js");
 
 // Global usefull function (should be placed in another file)
 
@@ -36,7 +23,7 @@ function userMention(user) {
 
 // Bot
 bot.on("ready", function() {
-  bot.user.setActivity("Soulever des mères").catch(console.error);
+  bot.user.setActivity("Soulever des mèrez").catch(console.error);
 });
 
 bot.on("message", function(message) {
@@ -44,19 +31,22 @@ bot.on("message", function(message) {
     message.channel.send("Pong");
   }
 
-  if (message.content === "!rand") {
-    let rand = Math.floor(Math.random() * 101);
-    if (rand >= 90) message.reply(`${rand} ${emojis.pogey}`);
-    else if (rand >= 80) message.reply(`${rand} ${emojis.pagchomp}`);
-    else if (rand >= 70) message.reply(`${rand} ${emojis.peepolove}`);
-    else if (rand >= 60) message.reply(`${rand} ${emojis.peepo}`);
-    else if (rand >= 50) message.reply(`${rand} ${emojis.pepe}`);
-    else if (rand >= 40) message.reply(`${rand} ${emojis.risitas}`);
-    else if (rand >= 30) message.reply(`${rand} ${emojis.pepehang}`);
-    else if (rand >= 20) message.reply(`${rand} ${emojis.ree}`);
-    else if (rand >= 10) message.reply(`${rand} ${emojis.hidethepain}`);
-    else if (rand >= 00) message.reply(`${rand} ${emojis.lol}`);
+  if (Rand.match(message)) {
+    return Rand.action(message);
   }
+  /*if (message.content === "!rand") {
+    let rand = Math.floor(Math.random() * 101);
+    if (rand >= 90) message.reply(`${rand} ${customMojis.pogey}`);
+    else if (rand >= 80) message.reply(`${rand} ${customMojis.pagchomp}`);
+    else if (rand >= 70) message.reply(`${rand} ${customMojis.peepolove}`);
+    else if (rand >= 60) message.reply(`${rand} ${customMojis.peepo}`);
+    else if (rand >= 50) message.reply(`${rand} ${customMojis.pepe}`);
+    else if (rand >= 40) message.reply(`${rand} ${customMojis.risitas}`);
+    else if (rand >= 30) message.reply(`${rand} ${customMojis.pepehang}`);
+    else if (rand >= 20) message.reply(`${rand} ${customMojis.ree}`);
+    else if (rand >= 10) message.reply(`${rand} ${customMojis.hidethepain}`);
+    else if (rand >= 00) message.reply(`${rand} ${customMojis.lol}`);
+  }*/
 
   if (Google.match(message)) {
     return Google.action(message);
