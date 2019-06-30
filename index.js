@@ -23,12 +23,16 @@ function userMention(user) {
 
 // Bot
 bot.on("ready", function() {
-  bot.user.setActivity("Soulever des mèrez").catch(console.error);
+  bot.user.setActivity("Soulever des mères").catch(console.error);
 });
 
 bot.on("message", function(message) {
   if (message.content === "!ping") {
     message.channel.send("Pong");
+  }
+
+  if (message.content === "!github") {
+    message.channel.send("https://github.com/Karnak19/kissBot");
   }
 
   if (Rand.match(message)) {

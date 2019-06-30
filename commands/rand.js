@@ -23,12 +23,12 @@ module.exports = class Rand {
       args = args.trim();
       randTable[args] = { rands: [], author: message.author };
       message.reply(
-        "Un rand est créer pour: " +
+        "Un rand est créé pour: " +
           args +
           "\n Pour participer faite: ```!rand " +
           args +
           " ```" +
-          "\n Pour close le rand faite: ```!rand close " +
+          "\n Pour close le rand faites : ```!rand close " +
           args +
           "``` "
       );
@@ -39,11 +39,11 @@ module.exports = class Rand {
         console.log("existe pas");
       } else {
         if (message.author !== randTable[args].author) {
-          message.reply(" Tu n'est pas authorisé à fermer le rand");
+          message.reply(" Tu n'es pas authorisé à fermer le rand");
         } else {
           this.closeRand(randTable[args].rands, (index, winner, array) => {
             message.channel.send(
-              `Le gagant de ${args} est ${
+              `Le gagnant de ${args} est ${
                 array[index].user
               } avec un rand à ${winner}`
             );
@@ -71,7 +71,7 @@ module.exports = class Rand {
   static checkIfUserRanded(user, array, callback) {
     for (let i = 0; i <= array.length; i++) {
       if (array.length > 0 && array[i].user == user) {
-        return callback(`${user} a déjà participer`);
+        return callback(`${user} a déjà participé`);
       } else {
         return callback(null);
       }
