@@ -67,7 +67,14 @@ Respect the argument's order
 
 ### Rand : `!rand`
 
+#### !rand :
+
 Return a random number between 1 - 100
+
+#### !rand create [arg]:
+
+Open a !rand instance, if you want to limit the number of participation for a specific item for example
+![https://puu.sh/DMNXi/39f33aacd7.png](https://puu.sh/DMNXi/39f33aacd7.png)
 
 ### Team : `!team`
 
