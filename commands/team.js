@@ -2,7 +2,6 @@ const moment = require("moment");
 moment.locale("fr");
 const raidList = require("../global/raidlist.js");
 const GoogleSpreadsheet = require("google-spreadsheet");
-const objectRenameKeys = require("object-rename-keys");
 
 const credentials = require("../google_credentials.js");
 
@@ -37,7 +36,6 @@ module.exports = class Team {
           const player10 = [];
           const player11 = [];
           const player12 = [];
-          const keysMap = { 0: "role", 1: "name", 2: "class" };
 
           doc.getRows(2, function(err, rows) {
             rows.map(row => {
@@ -71,8 +69,12 @@ module.exports = class Team {
             );
 
             const rosterObjects = roster.map(member => {
-              let memberObj = { ...member };
-              return objectRenameKeys(memberObj, keysMap);
+              let memberObj = {
+                role: member[0],
+                name: member[1],
+                class: member[2]
+              };
+              return memberObj;
             });
 
             const tanks = rosterObjects.filter(tank => {
@@ -85,10 +87,6 @@ module.exports = class Team {
             const healers = rosterObjects.filter(heal => {
               return heal.role.includes("Heal");
             });
-
-            console.table(tanks);
-            console.table(deeps);
-            console.table(healers);
 
             return message.channel.send(`**[Team]** ${mentionTag}`, {
               embed: {
