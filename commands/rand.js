@@ -35,9 +35,7 @@ module.exports = class Rand {
     } else if (action == "close") {
       args = args.replace(action, "");
       args = args.trim();
-      if (!randTable[args]) {
-        console.log("existe pas");
-      } else {
+      if (randTable[args]) {
         if (message.author !== randTable[args].author) {
           message.reply(" Tu n'es pas authorisé à fermer le rand");
         } else {
@@ -47,6 +45,7 @@ module.exports = class Rand {
                 array[index].user
               } avec un rand à ${winner}`
             );
+            randTable[args] = null;
           });
         }
       }
@@ -62,8 +61,6 @@ module.exports = class Rand {
             this.randResponse(rand, message, "pour: " + args);
           }
         });
-      } else {
-        console.log("existepas");
       }
     }
   }
