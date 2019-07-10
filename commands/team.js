@@ -23,68 +23,28 @@ module.exports = class Team {
 
         doc.useServiceAccountAuth(credentials, function(err) {
           let mentionTag = "<@&462944441418645504> <@&463026026000154625>";
-          const roster = [];
-          const player1 = [];
-          const player2 = [];
-          const player3 = [];
-          const player4 = [];
-          const player5 = [];
-          const player6 = [];
-          const player7 = [];
-          const player8 = [];
-          const player9 = [];
-          const player10 = [];
-          const player11 = [];
-          const player12 = [];
+          let roster = [];
+          let player = {};
 
           doc.getRows(2, function(err, rows) {
             rows.map(row => {
-              player1.push(row["player"]);
-              player2.push(row["player_2"]);
-              player3.push(row["player_3"]);
-              player4.push(row["player_4"]);
-              player5.push(row["player_5"]);
-              player6.push(row["player_6"]);
-              player7.push(row["player_7"]);
-              player8.push(row["player_8"]);
-              player9.push(row["player_9"]);
-              player10.push(row["player_10"]);
-              player11.push(row["player_11"]);
-              player12.push(row["player_12"]);
-            });
-
-            roster.push(
-              player1,
-              player2,
-              player3,
-              player4,
-              player5,
-              player6,
-              player7,
-              player8,
-              player9,
-              player10,
-              player11,
-              player12
-            );
-
-            const rosterObjects = roster.map(member => {
-              let memberObj = {
-                role: member[0],
-                name: member[1],
-                class: member[2]
+              player = {
+                role: row.role,
+                name: row.pseudo,
+                class: row.class
               };
-              return memberObj;
+
+              roster = [...roster, player];
             });
 
-            const tanks = rosterObjects.filter(tank => {
+            const tanks = roster.filter(tank => {
               return tank.role.includes("Tank");
             });
 
-            const deeps = rosterObjects.filter(dps => {
+            const deeps = roster.filter(dps => {
               return dps.role.includes("DD");
             });
-            const healers = rosterObjects.filter(heal => {
+            const healers = roster.filter(heal => {
               return heal.role.includes("Heal");
             });
 
