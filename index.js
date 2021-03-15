@@ -35,6 +35,10 @@ bot.on("message", function(message) {
     message.channel.send("https://github.com/Karnak19/kissBot");
   }
 
+  if (message.content === "!letsgo") {
+    message.channel.send("https://www.youtube.com/watch?v=SNUuB_rmIQI");
+  }
+
   if (Rand.match(message)) {
     return Rand.action(message);
   }
