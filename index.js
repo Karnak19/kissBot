@@ -36,7 +36,7 @@ bot.on("message", function(message) {
   }
 
   if (message.content === "!letsgo") {
-    message.channel.send("https://www.youtube.com/watch?v=SNUuB_rmIQI");
+    message.channel.send("-p https://www.youtube.com/watch?v=SNUuB_rmIQI");
   }
 
   if (Rand.match(message)) {
